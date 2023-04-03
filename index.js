@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const port = process.env.PORT || 4000;
-
+const shopRouter = require("./routers/shopRouter");
 const app = express();
 app.use(express.json());
 app.use(function (req, res, next) {
@@ -49,6 +49,8 @@ mongoose
 app.all("*", (req, res) => {
   res.json({ message: "No Route found for this url" });
 });
+
+app.use("/shop", shopRouter);
 
 // App Server
 app.listen(port, () => {
